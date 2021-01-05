@@ -2,10 +2,16 @@
 #include<iomanip> //For using setw(), setprecision(), ...
 using namespace std;
 
+float mon,rpy,ppy,pain;
+int year=1;
+
 int main(){	
 	cout << "Enter initial loan: ";
-	cout << "Enter interest rate per year (%): ";
+	cin>>mon;
+	cout <<"Enter interest rate per year (%): ";
+	cin>>rpy;
 	cout << "Enter amount you can pay per year: ";
+	cin>>ppy;
 
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
@@ -18,16 +24,49 @@ int main(){
 	cout << setw(13) << left << "NewBalance";
 	cout << "\n";
 	
-	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
-	//you can change input argument of 'setprecision()' to see the effect
+if(ppy<mon){
+
+	do{
 	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
-	
+	cout << setw(13) << left << year;
+	year++; 
+	cout << setw(13) << left << mon;
+	cout << setw(13) << left << (rpy/100*mon);
+	cout << setw(13) << left << (rpy/100*mon)+mon;
+	cout << setw(13) << left << ppy;
+	pain=((rpy/100*mon)+mon)-ppy;
+	cout << setw(13) << left << pain;
+	mon=pain;
+	cout << "\n";
+	}while(pain>ppy);
+
+	cout << fixed << setprecision(2); 
+	cout << setw(13) << left << year;
+	year++; 
+	cout << setw(13) << left << mon;
+	cout << setw(13) << left << (rpy/100*mon);
+	cout << setw(13) << left << (rpy/100*mon)+mon;
+	cout << setw(13) << left << (rpy/100*mon)+mon;
+	pain=((rpy/100*mon)+mon)-((rpy/100*mon)+mon);
+	cout << setw(13) << left << pain;
+	mon=pain;
+	cout << "\n";
+
+
+}else{
+
+	cout << fixed << setprecision(2); 
+	cout << setw(13) << left << year;
+	year++; 
+	cout << setw(13) << left << mon;
+	cout << setw(13) << left << (rpy/100*mon);
+	cout << setw(13) << left << (rpy/100*mon)+mon;
+	cout << setw(13) << left << (rpy/100*mon)+mon;
+	pain=((rpy/100*mon)+mon)-((rpy/100*mon)+mon);
+	cout << setw(13) << left << pain;
+	mon=pain;
+	cout << "\n";
+
+}
 	return 0;
 }
